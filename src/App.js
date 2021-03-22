@@ -3,9 +3,12 @@ import PokemonList from './PokemonList';
 import axios from 'axios';
 import Pagination from './Pagination';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom.css';
+
 function App() {
   const [pokemon, setPokemon] = useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=10");
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [loading, setLoading] = useState(true);
@@ -38,11 +41,15 @@ function App() {
 
   return (
     <>
+    <div className="container">
+      <h2 className="">Pokemon List using React</h2>
+      <h4>Data used from <a href="https://pokeapi.co/" target="_blank">https://pokeapi.co/</a></h4>
       <PokemonList pokemon = {pokemon} />
       <Pagination
         gotoNextPage = {nextPageUrl ? gotoNextPage : null}
         gotoPrevPage = {prevPageUrl ? gotoPrevPage : null}
       />
+    </div>
     </>
   );
 }
